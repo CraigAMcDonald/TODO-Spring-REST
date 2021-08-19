@@ -18,7 +18,7 @@ import codes.mcdonald.craig.todorest.repository.TodoRepository;
 
 @RestController
 @RequestMapping("/api")
-public class ActionController {
+public class ApiController {
 	
 	@Autowired
 	private TodoRepository repository;
