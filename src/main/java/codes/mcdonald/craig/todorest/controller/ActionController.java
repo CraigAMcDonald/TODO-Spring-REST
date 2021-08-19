@@ -10,24 +10,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import codes.mcdonald.craig.todorest.model.Entry;
 import codes.mcdonald.craig.todorest.repository.TodoRepository;
 
 @RestController
+@RequestMapping("/api")
 public class ActionController {
 	
 	@Autowired
 	private TodoRepository repository;
 
-	@GetMapping("/api/fetch")
+	@GetMapping("/fetch")
 	public List<Entry> getEntries() {
 		
 		return repository.findAll();
 	}
 	
-	@GetMapping("/api/fetch/{id}")
+	@GetMapping("/fetch/{id}")
 	public Entry getEntry(@PathVariable Long id) {
 		
 		var entry = repository.findById(id);
@@ -39,19 +41,19 @@ public class ActionController {
 		}
 	}
 	
-	@PostMapping("/api/create")
+	@PostMapping("/create")
 	public Entry createEntry(@RequestBody Entry entry) {
 		
 		return repository.save(entry);
 	}
 	
-	@PutMapping("/api/update")
+	@PutMapping("/update")
 	public Entry updateEntry() {
 
 		return new Entry();
 	}
 	
-	@DeleteMapping("/api/delete/{id}")
+	@DeleteMapping("/delete/{id}")
 	public Entry deleteEntry(@PathVariable Long id) {
 		
 		Optional<Entry> entry = repository.findById(id);
